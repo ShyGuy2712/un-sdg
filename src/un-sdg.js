@@ -14,7 +14,7 @@ export class unSdg extends DDDSuper(LitElement) {
     this.width = '254px';
     this.altText = 'Sustainable developments logo';     // altText for when img doesn't load
     this.colorOnly = false;
-    this.loading = 'lazy';
+    this.loading = "lazy";
     this.fetchPriority = 'low';
   }
 
@@ -34,7 +34,7 @@ export class unSdg extends DDDSuper(LitElement) {
     return [super.styles,
     css`
       :host {
-        // create var for background color for each goal
+        /* create var for background color for each goal */
         --un-sdg-goal-1: rgb(235, 28, 44);
         --un-sdg-goal-2: rgb(210, 160, 42);
         --un-sdg-goal-3: rgb(44, 155, 72);
@@ -53,18 +53,17 @@ export class unSdg extends DDDSuper(LitElement) {
         --un-sdg-goal-16: rgb(1, 85, 138);
         --un-sdg-goal-17: rgb(25, 54, 103);
 
+        background-color: white;  /* sets default bg color to white */
         display: block;
-        background-color: white;    // default bg color = white
       }
-      // sets width & bg color of img/wrapper classes
-      .img
+      /* sets width & bg color of wrapper class */
       .wrapper {
         width: var(--width, 254px);
         background-color: var(--goal-color);
-        display: block;   //removes weird margin when inline img
+        display: block;   /* removes weird margin when img = inline */
       }
       .color.wrapper {
-        height: var(--width, 254px);    //ensures square dimension
+        height: var(--width, 254px);    /* ensures square dimension */
       }
       div {
         padding: 0;
@@ -121,11 +120,11 @@ export class unSdg extends DDDSuper(LitElement) {
     return html`
       ${this.colorOnly ? html`
       <!-- if colorOnly true render div with class .color, and without an img -->
-       <div class="color wrapper" style="--width: ${this.width} --goal-color: var(--un-sdg-color-${this.goal})" height=${this.width}></div>
+       <div class="color wrapper" style="--width: ${this.width}; --goal-color: var(--un-sdg-goal-${this.goal})" height=${this.width}></div>
       ` : html`
       <!-- if colorOnly false, render div with class .svg, and with an img -->
        <div class="svg wrapper" style="--width: ${this.width}px; --goal-color: var(--un-sdg-color-${this.goal})">
-        <img src=${this.getImgSrc()} alt=${this.getAltText()}  fetchpriority=${this.fetchPriority} height=${this.width}>  <!-- Need loading to be overrided -->
+        <img src=${this.getImgSrc()} alt=${this.getAltText()} loading="${this.loading}" fetchpriority=${this.fetchPriority} height=${this.width}> <!-- Ignore the error, TS bad -->
        </div>
       `
       }
