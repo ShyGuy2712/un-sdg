@@ -65,7 +65,6 @@ export class unSdg extends DDDSuper(LitElement) {
       }
       .color.wrapper {
         height: var(--width, 254px);    //ensures square dimension
-        width: var(--width, 254px);
       }
       div {
         padding: 0;
@@ -126,7 +125,7 @@ export class unSdg extends DDDSuper(LitElement) {
       ` : html`
       <!-- if colorOnly false, render div with class .svg, and with an img -->
        <div class="svg wrapper" style="--width: ${this.width}px; --goal-color: var(--un-sdg-color-${this.goal})">
-        <img src=${this.getImgSrc()} alt=${this.getAltText()} fetchpriority=${this.fetchPriority} height=${this.width}>
+        <img src=${this.getImgSrc()} alt=${this.getAltText()}  fetchpriority=${this.fetchPriority} height=${this.width}>  <!-- Need loading to be overrided -->
        </div>
       `
       }
